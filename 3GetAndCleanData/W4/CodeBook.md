@@ -49,7 +49,29 @@ For each record in the dataset it is provided:
 
 ## Transformation
 
+a) Get labels & features 
+
+b) Select mean & std columns
+
+c) Extracts only the measurements on the mean and standard deviation for each measurement.
+
+d) Appropriately labels the data set with descriptive variable names. 
+
+e) Get train data 
+
+f) Get test data 
+
+g) Merges the training and the test sets to create one data set.
+
+h) Uses descriptive activity names to name the activities in the data set
+
+i) Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+j) Write the tidy dataset.
+
 ## Output
+
+* [tidydata.csv](tidydata.csv)
 
 ## Authors
 
