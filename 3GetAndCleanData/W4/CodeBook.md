@@ -104,6 +104,15 @@ Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ort
 * fBodyBodyGyroJerkMagmean
 * fBodyBodyGyroJerkMagstd
 
+### Activity Labels
+
+* WALKING
+* WALKING_UPSTAIRS
+* WALKING_DOWNSTAIRS
+* SITTING
+* STANDING
+* LAYING
+
 ## Transformation
 
 a) Get labels & features 
