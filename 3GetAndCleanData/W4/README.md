@@ -33,10 +33,10 @@ run_analysis.R
 
 ## Links
 
-* Repo: [GetAndCleanData](https://github.com/tristanry/datasciencecoursera/3GetAndCleanData/W4)
+* Repo: [GetAndCleanData](.)
 * Script: [run_analysis.R](run_analysis.R)
 * Readme: [README.md](README.md)
-* Code book [CodeBook.md]
+* Code book [CodeBook.md](CodeBook.md)
 * Tidy dataset [tidydata.csv](tidydata.csv)
 
 ## Authors
