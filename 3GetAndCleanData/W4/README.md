@@ -36,8 +36,8 @@ run_analysis.R
 * Repo: [GetAndCleanData](.)
 * Script: [run_analysis.R](run_analysis.R)
 * Readme: [README.md](README.md)
-* Code book [CodeBook.md](CodeBook.md)
-* Tidy dataset [tidydata.txt](tidydata.txt)
+* Code book: [CodeBook.md](CodeBook.md)
+* Tidy dataset: [tidydata.txt](tidydata.txt)
 
 ## Authors
 
