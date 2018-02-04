@@ -50,4 +50,4 @@ library(dplyr)
 dt_set_mean <- dt_set %>% group_by(class, subject, activity) %>% summarise_all(funs(mean))
 
 # write the tidy dataset 
-data.table::fwrite(x = dt_set_mean, file = "tidydata.csv", quote = FALSE, sep = ",")
+data.table::fwrite(x = dt_set_mean, file = "tidydata.txt", quote = FALSE, sep = ",")

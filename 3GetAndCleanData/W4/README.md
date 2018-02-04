@@ -37,7 +37,7 @@ run_analysis.R
 * Script: [run_analysis.R](run_analysis.R)
 * Readme: [README.md](README.md)
 * Code book [CodeBook.md](CodeBook.md)
-* Tidy dataset [tidydata.csv](tidydata.csv)
+* Tidy dataset [tidydata.txt](tidydata.txt)
 
 ## Authors
 

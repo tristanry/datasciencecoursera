@@ -71,7 +71,7 @@ j) Write the tidy dataset.
 
 ## Output
 
-* [tidydata.csv](tidydata.csv)
+* [tidydata.txt](tidydata.txt)
 
 ## Authors
 
