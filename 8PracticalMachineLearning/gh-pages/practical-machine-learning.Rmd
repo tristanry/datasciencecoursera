@@ -1,0 +1,70 @@
+---
+title: "Practical Machine Learning Peer-graded Assignment"
+#author: "Tristan HENRY"
+#date: "18 May 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
+```
+
+#Abstract 
+Human Activity Recognition - HAR has emerged as a key research area in the last years and is gaining increasing attention by the pervasive computing research community, especially for the development of context-aware systems.
+
+The HAR Dataset proposes 5 classes (sitting-down, standing-up, standing, walking, and sitting) collected on 8 hours of activities of 4 healthy subjects. All the details can be found [here](http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har). 
+
+Based on this dataset we will model those 5 classes and predict the activity of a test dataset.
+
+# Data loading
+First of all we load the dataset,
+```{r}
+download.file(url="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", destfile = "./pml-training.csv")
+download.file(url="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", destfile = "./pml-testing.csv")
+
+train <- read.csv("./pml-training.csv", header = T)
+test <- read.csv("./pml-testing.csv", header = T)
+data.frame(dim(train),dim(test))
+```
+
+#Data overview 
+Then we look at the data to select will variable will entered in the model. We only print columns where more than 50% of the values are not NAs.
+```{r}
+str(train[,colSums(!is.na(train)) > dim(train)[1] * 0.5 ])
+```
+
+#Modeling
+##Training
+Based on the dataset we only select the followings variables: gyros, accel, magnet, roll, pitch and yam for every sensors.
+The first method that we use is Random Forest with 3 cross vailidation. Random forest works well with this kind of classification.
+```{r echo = TRUE, message=FALSE}
+library(caret)
+set.seed(1234) 
+```
+```{r}
+mod1 <- train(classe~ .,data=train[,grepl(pattern = "^gyros|^accel|^magnet|^roll|^pitch|^yam|classe", x=names(train))],method="rf", trControl=trainControl(method="cv"),number=3)
+pred1 <- predict(mod1,subset(train, select = (-classe))); 
+table(pred1, train$classe)
+```
+The expected out of sample error is zero.
+
+Then we use a second method Support Vector Machines with Polynomial Kernel with 3 cross validation. This methods works well with this kind of classification.
+```{r}
+mod2 <- train(classe~ .,data=train[,grepl(pattern = "^gyros|^accel|^magnet|^roll|^pitch|^yam|classe", x=names(train))],method="svmPoly", trControl=trainControl(method="cv"),number=3)
+pred2 <- predict(mod1,subset(train, select = (-classe))); 
+table(pred2, train$classe)
+```
+The expected out of sample error is also zero.
+
+We can plot the prediction of both models.
+```{r}
+qplot(pred1,pred2,colour=classe,data=train)
+```
+
+Both methods gave the same result.
+
+##Test
+Since both method gave the same ouput, we decide to choose the first method Random Forest to predict the test dataset.
+```{r}
+predict(mod1,test)
+```
