@@ -1,0 +1,52 @@
+---
+title: "Developing Data Products - Peer graded assignment week 2"
+date: "27 May 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache =  TRUE)
+```
+
+
+
+We want to display the population increase of the largest city from 1960 to 2016 per country.
+
+First we download the countries population data and the geographical layers for each countries. 
+```{r results='hide', message=FALSE, warning=FALSE}
+library(rgdal)
+library(leaflet)
+```
+```{r, message=FALSE, results='hide'}
+download.file(url="http://api.worldbank.org/v2/en/indicator/EN.URB.LCTY?downloadformat=csv", destfile = "PopulationInLargestCity.zip")
+unzip("PopulationInLargestCity.zip")
+populationInLargestCity <- read.csv("API_EN.URB.LCTY_DS2_en_csv_v2_9916549.csv", skip = 4, header = TRUE)
+
+download.file(url="https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", destfile = "countries.geojson")
+countries <- readOGR("countries.geojson", "OGRGeoJSON")
+```
+
+Then we calculate the raise of the the population for each largest city in percent and display it in the map.
+The log of the raise is used for the palette.
+```{r, warning=FALSE}
+populationInLargestCity$rise <- (populationInLargestCity$X2016-populationInLargestCity$X1960) / populationInLargestCity$X1960 * 100
+populationInLargestCity$riselog <- log(populationInLargestCity$rise)
+
+dataset <- merge(countries, populationInLargestCity, by.x=c("id"), by.y=c("Country.Code"))
+
+map <- leaflet(dataset) %>% addTiles()
+pal <- colorNumeric(
+  palette = "YlGnBu",
+  domain = dataset$riselog
+)
+map %>%
+  addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
+    color = ~pal(riselog),
+   label = ~paste0(name, " (", id ,")", ": ", formatC(floor(rise), big.mark = ","), " %")
+  ) %>%
+  addLegend("bottomright", pal = pal, values = ~riselog,
+    title = "Rise from 1960 to 2016",
+   labFormat = labelFormat(prefix = " log "),
+    opacity = 1
+  )
+```
