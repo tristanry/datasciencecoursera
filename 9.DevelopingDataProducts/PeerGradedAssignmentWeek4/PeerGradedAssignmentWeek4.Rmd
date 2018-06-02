@@ -59,5 +59,8 @@ Finally we can plot the clustering.
             points(km$centers, pch = 4, cex = 4, lwd = 4)
 ```
 
-Here is the shiny app url:
-[https://tristanry.shinyapps.io/PeerGradedAssignmentWeek4/](https://tristanry.shinyapps.io/PeerGradedAssignmentWeek4/)
+Here  are the shiny links: 
+
+- [Online application](https://tristanry.shinyapps.io/PeerGradedAssignmentWeek4/)
+- [server.R](https://github.com/tristanry/datasciencecoursera/blob/gh-pages/9.DevelopingDataProducts/PeerGradedAssignmentWeek4/server.R)
+- [ui.R](https://github.com/tristanry/datasciencecoursera/blob/gh-pages/9.DevelopingDataProducts/PeerGradedAssignmentWeek4/ui.R])
