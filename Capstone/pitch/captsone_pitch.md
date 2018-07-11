@@ -75,8 +75,8 @@ Reference
 ========================================================
 [Milestone report](http://rpubs.com/tristanry/399667)
 
-[Shiny app](https://tristanry.shinyapps.io/predictWord/)
+[Shiny app](https://tristanry.shinyapps.io/predictWord2/)
 
-[Shiny app source](https://github.com/tristanry/datasciencecoursera/tree/gh-pages/Capstone/predictWord2)
+[Shiny app source](https://github.com/tristanry/datasciencecoursera/tree/gh-pages/Capstone/predictWord)
 
 
