@@ -19,13 +19,10 @@ if(!load){
     #source("https://bioconductor.org/biocLite.R")
     #biocLite("Rgraphviz")
     library(Rgraphviz)
-    
     library(tm.plugin.dc)
-    
     
     #download.file(url="https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip", destfile = "Coursera-SwiftKey.zip")
     #unzip("Coursera-SwiftKey.zip")
-    
     
     if(useSubDataSet){
         #create a sub dataset with the 200th first lines of each files
@@ -38,11 +35,7 @@ if(!load){
     }else{
         ovid <- Corpus(DirSource("./final/en_US/"), readerControl = list(language = "en", load = TRUE))
     }
-    
-    #tdm <- TermDocumentMatrix(ovid, control = list(removePunctuation = TRUE, stopwords = TRUE, removeNumbers = TRUE,  stemming = TRUE))
-    #inspect(tdm[findFreqTerms(tdm, 25, Inf), 1:3])
-    #findAssocs(tdm, "girlfriend", 0.85)
-    
+
     #cleaning the corpus 
     
     # ovid <- tm_map(ovid, PlainTextDocument)
@@ -112,9 +105,6 @@ predict_model <- cbind(predict_model, as.data.frame(str_split_fixed(predict_mode
 predict_model <- select(predict_model, -words)
 # predict_model[sample(1:nrow(predict_model),10),]
 
-
-
-
 predict_next_word <- function(phrase){
     words <- strsplit(phrase, " ")[[1]]
     length_phrase <- length(words)
@@ -132,5 +122,3 @@ predict_next_word <- function(phrase){
     }
     predicted_words
 }
-
-

@@ -2,6 +2,7 @@ set.seed(12345)
 library(dplyr)
 library(stringr)
 
+#load("freq_bigram.RData") ; frequency_bigram <- frequency_bigram[frequency_bigram$frequency>100,] ; save(frequency_bigram,file="freq_bigram_light.RData")
 load("freq_bigram_light.RData")
 
 predict_model <- as.data.frame(frequency_bigram)
